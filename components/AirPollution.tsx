@@ -1,6 +1,6 @@
 "use client"
 
-import { Circle } from "lucide-react";
+import { Circle, SprayCan } from "lucide-react";
 import { Skeleton } from "./ui/skeleton";
 import { AirPollutionData } from "@/types";
 import { cn } from "@/lib/utils";
@@ -14,7 +14,7 @@ interface Props {
 const AirPollution = ({data, isLoading, error}: Props) => {
   if (isLoading) {
     return (
-      <Skeleton className="w-full h-4 rounded-sm border dark:border-neutral-700" />
+      <Skeleton className="w-full h-24 rounded-sm border dark:border-neutral-700" />
     )
   }
 
@@ -56,9 +56,12 @@ const AirPollution = ({data, isLoading, error}: Props) => {
     return (
       <div className="flex flex-col justify-between items-center w-full h-max px-3 py-2 flex-shrink-0 border dark:border-neutral-700 rounded-lg bg-neutral-100 dark:bg-neutral-950">
         <div className="w-full mb-3 pb-2 border-b">
-          <p className="text-sm text-neutral-700 font-semibold dark:text-white">
-            Air Quality
-          </p>
+          <div className="flex justify-start items-center gap-2">
+            <SprayCan className="text-neutral-500 dark:text-neutral-400" />
+            <p className="text-sm text-neutral-700 font-semibold dark:text-white">
+              Air Pollution
+            </p>
+          </div>
         </div>
   
         <div className="pollution-gradient relative w-full h-4 mb-3 px-3 rounded-full">

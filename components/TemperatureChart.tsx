@@ -35,7 +35,7 @@ const TemperatureChart = ({data, isLoading, error}: Props) => {
               {moment().format("dddd")}
             </p>
             <p className="text-xs text-neutral-700 dark:text-white">
-              Local Time: {moment().utcOffset(data.timezone / 60).format("HH:mm")}
+              Local Time: {moment.utc().add(data.timezone, "second").format("HH:mm")}
             </p>
           </div>
   
