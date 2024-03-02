@@ -1,25 +1,37 @@
 "use client"
 
+import AirPollution from "@/components/AirPollution";
 import TemperatureChart from "@/components/TemperatureChart";
 import { useGlobalContext } from "@/context/GlobalContext";
 
+// import data from "@/dataExample.json";
+// import { AirPollutionData, WeatherData } from "@/types";
+
 const Home = () => {
-  const {forecast, isLoading, error} = useGlobalContext();
+  const {forecast, airPollution, isLoading, error} = useGlobalContext();
 
   return (
     <main className="py-4">
       <div className="container flex flex-col gap-4 md:flex-row">
-        <div className="flex flex-col gap-4 w-full">
+        <section className="flex flex-col gap-4 flex-shrink-0">
           <TemperatureChart
+            // data={data.weather as WeatherData}
             data={forecast}
             isLoading={isLoading}
             error={error}
-            // data={null}
-            // isLoading={false}
-            // error={null}
           />
-        </div>
-        <div className="flex flex-col"></div>
+        </section>
+
+        <section className="flex flex-col flex-grow">
+          <div className="grid col-span-full gap-4 h-full sm:col-span-2 lg:grid-cols-3 xl:grid-cols-4">
+            <AirPollution
+              // data={data.airPollution as AirPollutionData}
+              data={airPollution}
+              isLoading={isLoading}
+              error={error}
+            />
+          </div>
+        </section>
       </div>
     </main>
   );

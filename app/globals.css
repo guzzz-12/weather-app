@@ -70,7 +70,19 @@
   * {
     @apply border-border;
   }
+
   body {
     @apply bg-background text-foreground;
+  }
+
+  .pollution-gradient {
+    @apply bg-gradient-to-r from-green-500 via-yellow-600 to-red-600;
+    /* background: linear-gradient(to right, 
+      #2ecc71 0%,
+      #f1c40f 25%,
+      #f39c12 50%,
+      #e74c3c 75%,
+      #c0392b 100%
+    ); */
   }
 }

@@ -2,8 +2,8 @@
 
 import moment from "moment";
 import { MapPin } from "lucide-react";
-import { WeatherData } from "@/types";
 import { Skeleton } from "./ui/skeleton";
+import { WeatherData } from "@/types";
 import { cn } from "@/lib/utils";
 
 interface Props {
@@ -13,8 +13,6 @@ interface Props {
 }
 
 const TemperatureChart = ({data, isLoading, error}: Props) => {
-  console.log(data);
-
   if (isLoading) {
     return (
       <Skeleton className="w-[250px] aspect-square border dark:border-neutral-700 rounded-lg" />
@@ -30,10 +28,10 @@ const TemperatureChart = ({data, isLoading, error}: Props) => {
     const isNightIcon = data.weather[0].icon.endsWith("n");
 
     return (
-      <div className="flex flex-col justify-between items-center w-full max-w-[250px] aspect-square py-2 flex-shrink-0 border dark:border-neutral-700 rounded-lg bg-neutral-100 dark:bg-neutral-950">
+      <div className="flex flex-col justify-between items-center w-[250px] aspect-square py-2 flex-shrink-0 border dark:border-neutral-700 rounded-lg bg-neutral-100 dark:bg-neutral-950">
         <div className="w-full">
           <div className="flex justify-between items-center w-full mb-2 px-3 pb-2 border-b">
-            <p className="text-xs text-neutral-700 dark:text-white">
+            <p className="text-sm text-neutral-700 dark:text-white">
               {moment().format("dddd")}
             </p>
             <p className="text-xs text-neutral-700 dark:text-white">
