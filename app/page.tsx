@@ -1,6 +1,7 @@
 "use client"
 
 import AirPollution from "@/components/AirPollution";
+import Sunset from "@/components/Sunset";
 import TemperatureChart from "@/components/TemperatureChart";
 import { useGlobalContext } from "@/context/GlobalContext";
 
@@ -27,6 +28,13 @@ const Home = () => {
             <AirPollution
               // data={data.airPollution as AirPollutionData}
               data={airPollution}
+              isLoading={isLoading}
+              error={error}
+            />
+
+            <Sunset
+              // data={data.airPollution as AirPollutionData}
+              data={forecast}
               isLoading={isLoading}
               error={error}
             />
