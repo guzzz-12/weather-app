@@ -3,6 +3,7 @@
 import AirPollution from "@/components/AirPollution";
 import Sunset from "@/components/Sunset";
 import TemperatureChart from "@/components/TemperatureChart";
+import Wind from "@/components/Wind";
 import { useGlobalContext } from "@/context/GlobalContext";
 
 // import data from "@/dataExample.json";
@@ -34,6 +35,12 @@ const Home = () => {
 
             <Sunset
               // data={data.airPollution as AirPollutionData}
+              data={forecast}
+              isLoading={isLoading}
+              error={error}
+            />
+
+            <Wind
               data={forecast}
               isLoading={isLoading}
               error={error}
