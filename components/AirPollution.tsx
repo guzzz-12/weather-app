@@ -12,10 +12,6 @@ interface Props {
 }
 
 const AirPollution = ({data, isLoading, error}: Props) => {
-  if (error) {
-    return <p>{error}</p>
-  }
-
   let airQualityIndex = "good";
   let position = "left-1";
 
@@ -50,6 +46,7 @@ const AirPollution = ({data, isLoading, error}: Props) => {
     <ItemCard
       title="Air Pollution"
       icon="SprayCan"
+      error={error}
       loading={isLoading}
       loaderHeight="h-24"
     >

@@ -23,6 +23,7 @@ const Sunset = ({data, isLoading, error}: Props) => {
     <ItemCard
       title="Daylight"
       icon="Sun"
+      error={error}
       loading={isLoading}
       loaderHeight="h-[120px]"
     >
