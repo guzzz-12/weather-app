@@ -1,6 +1,6 @@
 import { NextRequest, NextResponse } from "next/server";
 import axios from "axios";
-import { WeatherData } from "@/types";
+import { ApiErrorType, WeatherData } from "@/types";
 
 const API_KEY = process.env.OPEN_WEATHER_KEY!;
 
@@ -17,6 +17,9 @@ export async function GET(req: NextRequest) {
     
   } catch (error: any) {
     console.log(`Error consultando data del clima: ${error.message}`);
-    return NextResponse.json({message: "Something went wrong"}, {status: 500});
+    return NextResponse.json<{message: string, errorType: ApiErrorType}>(
+      {message: "Something went wrong", errorType: "weatherData"},
+      {status: 500}
+    );
   }
 }

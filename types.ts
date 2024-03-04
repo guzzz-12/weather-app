@@ -1,3 +1,5 @@
+export type ApiErrorType = "weatherData" | "airPollution" | "dailyForecast";
+
 /** Respuesta del forecast de Weather API */
 export interface WeatherData {
   coord: {

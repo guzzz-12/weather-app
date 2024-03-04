@@ -1,6 +1,6 @@
 import { NextRequest, NextResponse } from "next/server";
 import axios from "axios";
-import { AirPollutionData } from "@/types";
+import { AirPollutionData, ApiErrorType } from "@/types";
 
 const API_KEY = process.env.OPEN_WEATHER_KEY!;
 
@@ -18,6 +18,9 @@ export async function GET(req: NextRequest) {
     
   } catch (error: any) {
     console.log(`Error consultando air pollution: ${error.message}`);
-    return NextResponse.json({message: "Something went wrong"}, {status: 500});
+    return NextResponse.json<{message: string, errorType: ApiErrorType}>(
+      {message: "Something went wrong", errorType: "airPollution"},
+      {status: 500}
+    );
   }
 }
