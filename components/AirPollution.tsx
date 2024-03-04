@@ -2,16 +2,17 @@
 
 import { Circle } from "lucide-react";
 import ItemCard from "./ItemCard";
-import { AirPollutionData } from "@/types";
+import { AirPollutionData, ApiErrorType } from "@/types";
 import { cn } from "@/lib/utils";
 
 interface Props {
   data: AirPollutionData | null;
   isLoading: boolean;
   error: string | null;
+  errorType: ApiErrorType | null;
 }
 
-const AirPollution = ({data, isLoading, error}: Props) => {
+const AirPollution = ({data, isLoading, error, errorType}: Props) => {
   let airQualityIndex = "good";
   let position = "left-1";
 
@@ -47,8 +48,10 @@ const AirPollution = ({data, isLoading, error}: Props) => {
       title="Air Pollution"
       icon="SprayCan"
       error={error}
+      errorType={errorType}
       loading={isLoading}
       loaderHeight="h-24"
+      item="airPollution"
     >
       <div className="pollution-gradient relative w-full h-4 mb-3 px-3 rounded-full">
         <Circle

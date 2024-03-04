@@ -1,6 +1,7 @@
 "use client"
 
 import AirPollution from "@/components/AirPollution";
+import DailyForecast from "@/components/DailyForecast";
 import Sunset from "@/components/Sunset";
 import TemperatureChart from "@/components/TemperatureChart";
 import Wind from "@/components/Wind";
@@ -10,7 +11,7 @@ import { useGlobalContext } from "@/context/GlobalContext";
 // import { AirPollutionData, WeatherData } from "@/types";
 
 const Home = () => {
-  const {forecast, airPollution, isLoading, error} = useGlobalContext();
+  const {forecast, airPollution, dailyForecast, isLoadingWeather, isLoadingDailyForecast, isLoadingAirPollution, error, apiErrorType} = useGlobalContext();
 
   return (
     <main className="py-4">
@@ -19,31 +20,42 @@ const Home = () => {
           <TemperatureChart
             // data={data.weather as WeatherData}
             data={forecast}
-            isLoading={isLoading}
+            isLoading={isLoadingWeather}
             error={error}
+            apiErrorType={apiErrorType}
           />
         </section>
 
         <section className="flex flex-col flex-grow">
-          <div className="grid col-span-full gap-4 h-full sm:col-span-2 lg:grid-cols-3 xl:grid-cols-4">
+          <div className="grid col-span-full gap-4 h-full sm:col-span-2 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4">
             <AirPollution
               // data={data.airPollution as AirPollutionData}
               data={airPollution}
-              isLoading={isLoading}
+              isLoading={isLoadingAirPollution}
               error={error}
+              errorType={apiErrorType}
             />
 
             <Sunset
               // data={data.airPollution as AirPollutionData}
               data={forecast}
-              isLoading={isLoading}
+              isLoading={isLoadingWeather}
               error={error}
+              errorType={apiErrorType}
             />
 
             <Wind
               data={forecast}
-              isLoading={isLoading}
+              isLoading={isLoadingWeather}
               error={error}
+              errorType={apiErrorType}
+            />
+
+            <DailyForecast
+              data={dailyForecast}
+              isLoading={isLoadingDailyForecast}
+              error={error}
+              errorType={apiErrorType}
             />
           </div>
         </section>

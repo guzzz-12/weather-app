@@ -3,19 +3,16 @@
 import moment from "moment";
 import { SunriseIcon, SunsetIcon } from "lucide-react";
 import ItemCard from "./ItemCard";
-import { WeatherData } from "@/types";
+import { ApiErrorType, WeatherData } from "@/types";
 
 interface Props {
   data: WeatherData | null;
   isLoading: boolean;
   error: string | null;
+  errorType: ApiErrorType | null;
 }
 
-const Sunset = ({data, isLoading, error}: Props) => {
-  if (error) {
-    return <p>{error}</p>
-  }
-
+const Sunset = ({data, isLoading, error, errorType}: Props) => {
   const sunsetTime = data && moment.unix(data.sys.sunset).utcOffset(data.timezone / 60).format("HH:mm");
   const sunriseTime = data && moment.unix(data.sys.sunrise).utcOffset(data.timezone / 60).format("HH:mm");
 
@@ -24,8 +21,10 @@ const Sunset = ({data, isLoading, error}: Props) => {
       title="Daylight"
       icon="Sun"
       error={error}
+      errorType={errorType}
       loading={isLoading}
       loaderHeight="h-[120px]"
+      item="weatherData"
     >
       <div className="flex flex-col items-start gap-1 w-full">
         <div className="flex justify-start items-baseline gap-2">

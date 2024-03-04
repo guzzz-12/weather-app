@@ -1,13 +1,14 @@
 import ItemCard from "./ItemCard";
-import { WeatherData } from "@/types";
+import { ApiErrorType, WeatherData } from "@/types";
 
 interface Props {
   data: WeatherData | null;
   isLoading: boolean;
   error: string | null;
+  errorType: ApiErrorType | null;
 }
 
-const Wind = ({data, isLoading, error}: Props) => {
+const Wind = ({data, isLoading, error, errorType}: Props) => {
   const windSpeed = data?.wind.speed ?? 0;
   const windDirection = data?.wind.deg ?? 0;
 
@@ -16,8 +17,10 @@ const Wind = ({data, isLoading, error}: Props) => {
       title="Wind"
       icon="Wind"
       error={error}
+      errorType={errorType}
       loaderHeight="h-[110px]"
       loading={isLoading}
+      item="weatherData"
     >
       <div
         style={{
