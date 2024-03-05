@@ -1,7 +1,7 @@
 "use client"
 
 import AirPollution from "@/components/AirPollution";
-import DailyForecast from "@/components/DailyForecast";
+import FiveDaysForecast from "@/components/FiveDaysForecast";
 import Sunset from "@/components/Sunset";
 import TemperatureChart from "@/components/TemperatureChart";
 import Wind from "@/components/Wind";
@@ -27,36 +27,44 @@ const Home = () => {
         </section>
 
         <section className="flex flex-col flex-grow">
-          <div className="grid col-span-full gap-4 h-full sm:col-span-2 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4">
-            <AirPollution
-              // data={data.airPollution as AirPollutionData}
-              data={airPollution}
-              isLoading={isLoadingAirPollution}
-              error={error}
-              errorType={apiErrorType}
-            />
+          <div className="grid grid-cols-1 gap-4 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 h-full">
+            <div className="col-span-2 h-full">
+              <AirPollution
+                // data={data.airPollution as AirPollutionData}
+                data={airPollution}
+                isLoading={isLoadingAirPollution}
+                error={error}
+                errorType={apiErrorType}
+              />
+            </div>
 
-            <Sunset
-              // data={data.airPollution as AirPollutionData}
-              data={forecast}
-              isLoading={isLoadingWeather}
-              error={error}
-              errorType={apiErrorType}
-            />
+            <div className="col-span-1 h-full">
+              <Sunset
+                // data={data.airPollution as AirPollutionData}
+                data={forecast}
+                isLoading={isLoadingWeather}
+                error={error}
+                errorType={apiErrorType}
+              />
+            </div>
 
-            <Wind
-              data={forecast}
-              isLoading={isLoadingWeather}
-              error={error}
-              errorType={apiErrorType}
-            />
+            <div className="col-span-1 h-full">
+              <Wind
+                data={forecast}
+                isLoading={isLoadingWeather}
+                error={error}
+                errorType={apiErrorType}
+              />
+            </div>
 
-            <DailyForecast
-              data={dailyForecast}
-              isLoading={isLoadingDailyForecast}
-              error={error}
-              errorType={apiErrorType}
-            />
+            <div className="col-span-2 h-full">
+              <FiveDaysForecast
+                data={dailyForecast}
+                isLoading={isLoadingDailyForecast}
+                error={error}
+                errorType={apiErrorType}
+              />
+            </div>
           </div>
         </section>
       </div>
