@@ -11,7 +11,7 @@ interface Props {
   loading: boolean;
   error: string | null;
   errorType: ApiErrorType | null;
-  loaderHeight: `h-${number}` | `h-[${number}px]` | `h-[${number}rem]`;
+  loaderHeight: "h-full" | `h-${number}` | `h-[${number}px]` | `h-[${number}rem]`;
   children: ReactNode;
 }
 

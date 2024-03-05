@@ -23,7 +23,7 @@ const Sunset = ({data, isLoading, error, errorType}: Props) => {
       error={error}
       errorType={errorType}
       loading={isLoading}
-      loaderHeight="h-[120px]"
+      loaderHeight="h-full"
       item="weatherData"
     >
       <div className="flex flex-col items-start gap-1 w-full">

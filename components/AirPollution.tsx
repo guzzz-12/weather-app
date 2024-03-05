@@ -50,7 +50,7 @@ const AirPollution = ({data, isLoading, error, errorType}: Props) => {
       error={error}
       errorType={errorType}
       loading={isLoading}
-      loaderHeight="h-24"
+      loaderHeight="h-full"
       item="airPollution"
     >
       <div className="pollution-gradient relative w-full h-4 mb-3 px-3 rounded-full">

@@ -18,7 +18,7 @@ const Wind = ({data, isLoading, error, errorType}: Props) => {
       icon="Wind"
       error={error}
       errorType={errorType}
-      loaderHeight="h-[110px]"
+      loaderHeight="h-24"
       loading={isLoading}
       item="weatherData"
     >
