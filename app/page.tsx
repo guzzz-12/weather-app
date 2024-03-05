@@ -2,8 +2,11 @@
 
 import AirPollution from "@/components/AirPollution";
 import FiveDaysForecast from "@/components/FiveDaysForecast";
+import Humidity from "@/components/Humidity";
+import Pressure from "@/components/Pressure";
 import Sunset from "@/components/Sunset";
 import TemperatureChart from "@/components/TemperatureChart";
+import Visibility from "@/components/Visibility";
 import Wind from "@/components/Wind";
 import { useGlobalContext } from "@/context/GlobalContext";
 
@@ -61,6 +64,33 @@ const Home = () => {
               <FiveDaysForecast
                 data={dailyForecast}
                 isLoading={isLoadingDailyForecast}
+                error={error}
+                errorType={apiErrorType}
+              />
+            </div>
+
+            <div className="col-span-1 h-full">
+              <Humidity
+                data={forecast}
+                isLoading={isLoadingWeather}
+                error={error}
+                errorType={apiErrorType}
+              />
+            </div>
+
+            <div className="col-span-1 h-full">
+              <Visibility
+                data={forecast}
+                isLoading={isLoadingWeather}
+                error={error}
+                errorType={apiErrorType}
+              />
+            </div>
+
+            <div className="col-span-1 h-full">
+              <Pressure
+                data={forecast}
+                isLoading={isLoadingWeather}
                 error={error}
                 errorType={apiErrorType}
               />
