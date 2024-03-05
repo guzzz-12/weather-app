@@ -53,15 +53,17 @@ const AirPollution = ({data, isLoading, error, errorType}: Props) => {
       loaderHeight="h-full"
       item="airPollution"
     >
-      <div className="pollution-gradient relative w-full h-4 mb-3 px-3 rounded-full">
-        <Circle
-          className={cn("absolute top-[50%] h-3.5 aspect-square text-neutral-700 dark:text-black fill-white -translate-y-[50%]", position)}
-        />
-      </div>
+      <div className="flex flex-col justify-center items-center w-full h-full mb-3">
+        <div className="severity-gradient relative w-full h-4 mb-3 px-3 rounded-full">
+          <Circle
+            className={cn("absolute top-[50%] h-3.5 aspect-square text-neutral-700 dark:text-black fill-white -translate-y-[50%]", position)}
+          />
+        </div>
 
-      <p className="w-full ml-3 text-sm text-left">
-        Air quality is {airQualityIndex}
-      </p>
+        <p className="w-full ml-3 text-sm text-left">
+          Air quality is <span className="font-bold">{airQualityIndex}</span>.
+        </p>
+      </div>
     </ItemCard>
   );
 }

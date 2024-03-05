@@ -12,8 +12,6 @@ interface Props {
 }
 
 const FiveDaysForecast = ({data, isLoading, error, errorType}: Props) => {
-  console.log({data});
-
   return (
     <ItemCard
       title="5-Day Forecast"

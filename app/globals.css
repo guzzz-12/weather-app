@@ -75,7 +75,7 @@
     @apply bg-background text-foreground;
   }
 
-  .pollution-gradient {
+  .severity-gradient {
     @apply bg-gradient-to-r from-green-500 via-yellow-600 to-red-600;
     /* background: linear-gradient(to right, 
       #2ecc71 0%,
