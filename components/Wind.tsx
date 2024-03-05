@@ -22,25 +22,27 @@ const Wind = ({data, isLoading, error, errorType}: Props) => {
       loading={isLoading}
       item="weatherData"
     >
-      <div
-        style={{
-          backgroundImage: `url("/compass-rose.webp")`,
-          backgroundSize: "cover",
-          backgroundPosition: "center center"
-        }}
-        className="relative w-[110px] h-[110px] mb-2 rounded-full shadow-sm"
-      >
-        <img
-          style={{transform: `translate(-50%, -50%) rotateZ(${windDirection}deg)`}}
-          className="absolute block top-[50%] left-[50%] w-full h-full origin-center z-30"
-          src="/compass-arrow.webp"
-          alt="compass arrow"
-        />
-      </div>
+      <div className="flex flex-col justify-center items-center gap-2 w-full h-full p-2">
+        <div
+          style={{
+            backgroundImage: `url("/compass-rose.webp")`,
+            backgroundSize: "cover",
+            backgroundPosition: "center center"
+          }}
+          className="relative w-full max-w-[200px] aspect-square rounded-full shadow-sm"
+        >
+          <img
+            style={{transform: `translate(-50%, -50%) rotateZ(${windDirection}deg)`}}
+            className="absolute block top-[50%] left-[50%] w-full h-full origin-center z-30"
+            src="/compass-arrow.webp"
+            alt="compass arrow"
+          />
+        </div>
 
-      <p className="w-full text-xs text-center font-semibold">
-        {windSpeed.toFixed(1)} m/s &nbsp; &mdash; &nbsp; @{windDirection}°
-      </p>
+        <p className="w-full text-sm text-center font-semibold">
+          {windSpeed.toFixed(1)} m/s &nbsp; &mdash; &nbsp; @{windDirection}°
+        </p>
+      </div>
     </ItemCard>
   )
 }

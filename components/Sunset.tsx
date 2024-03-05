@@ -26,16 +26,16 @@ const Sunset = ({data, isLoading, error, errorType}: Props) => {
       loaderHeight="h-full"
       item="weatherData"
     >
-      <div className="flex flex-col items-start gap-1 w-full">
-        <div className="flex justify-start items-baseline gap-2">
-          <SunriseIcon className="w-4 h-4" />
-          <p className="text-sm text-start text-neutral-700 font-semibold dark:text-white">
+      <div className="flex flex-col justify-center items-center gap-2 w-full h-full">
+        <div className="flex justify-start items-center gap-3 w-full">
+          <SunriseIcon className="w-10 h-10 p-1 rounded-sm text-orange-700 bg-orange-100 border" />
+          <p className="text-start text-neutral-700 font-semibold dark:text-white">
             Sunrise: <span className="font-normal">{sunriseTime}</span>
           </p>
         </div>
-        <div className="flex justify-start items-baseline gap-2">
-          <SunsetIcon className="w-4 h-4" />
-          <p className="text-sm text-start text-neutral-700 font-semibold dark:text-white">
+        <div className="flex justify-start items-center gap-3 w-full">
+          <SunsetIcon className="w-10 h-10 p-1 rounded-sm text-orange-700 bg-orange-100 border" />
+          <p className="text-start text-neutral-700 font-semibold dark:text-white">
             Sunset: <span className="font-normal">{sunsetTime}</span>
           </p>
         </div>

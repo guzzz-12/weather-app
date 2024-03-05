@@ -60,7 +60,7 @@ const AirPollution = ({data, isLoading, error, errorType}: Props) => {
           />
         </div>
 
-        <p className="w-full ml-3 text-sm text-left">
+        <p className="w-full ml-3 text-left">
           Air quality is <span className="font-bold">{airQualityIndex}</span>.
         </p>
       </div>

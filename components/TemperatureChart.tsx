@@ -72,7 +72,7 @@ const TemperatureChart = ({data, isLoading, error, apiErrorType}: Props) => {
           <div className="w-full ml-4">
             <div className="flex justify-start items-center gap-2 mb-2">
               <img
-                className={cn("block w-12 h-9 object-cover object-center border rounded-sm bg-neutral-400 dark:border-neutral-700 dark:bg-transparent", isNightIcon && "bg-transparent dark:bg-neutral-300")}
+                className={cn("block w-12 h-9 object-cover object-center border rounded-sm bg-sky-500 dark:border-neutral-700", isNightIcon && "bg-sky-400")}
                 src={`https://openweathermap.org/img/wn/${data.weather[0].icon}@2x.png`}
               />
               <p className="">
