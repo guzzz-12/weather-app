@@ -23,7 +23,7 @@ const TemperatureChart = ({data, isLoading, error, apiErrorType}: Props) => {
   const isNightIcon = data && data.weather[0].icon.endsWith("n");
 
   return (
-    <div className="flex flex-col justify-between items-center w-[250px] aspect-square py-2 flex-shrink-0 border dark:border-neutral-700 rounded-lg bg-neutral-100 dark:bg-neutral-950">
+    <div className="flex flex-col justify-between items-center gap-4 w-[250px] aspect-square py-2 flex-shrink-0 border dark:border-neutral-700 rounded-lg bg-neutral-100 dark:bg-neutral-950">
       {error && apiErrorType === "weatherData" &&
         <div className="flex justify-start items-center gap-2 w-full px-4 text-sm">
           <AlertCircle className="text-red-600" />
@@ -45,18 +45,14 @@ const TemperatureChart = ({data, isLoading, error, apiErrorType}: Props) => {
     
             <div className="flex justify-start items-center gap-1 w-full px-3">
               <MapPin className="w-4 h-4 opacity-65" />
-              <p className="font-semibold text-neutral-700 dark:text-white">
+              <p className="text-lg text-neutral-700 dark:text-white">
                 {data.name}
               </p>
             </div>
           </div>
     
           <div className="flex flex-col gap-1">
-            <p className="text-6xl text-center font-bold">
-              {Math.round(data.main.temp)}°C
-            </p>
-
-            <div className="flex justify-center items-center gap-2 w-full text-xs">
+            <div className="flex justify-start items-center gap-2 w-full text-xs text-left dark:opacity-65">
               <p>
                 Min: {Math.round(data.main.temp_min)}°C
               </p>
@@ -67,6 +63,14 @@ const TemperatureChart = ({data, isLoading, error, apiErrorType}: Props) => {
                 Max: {Math.round(data.main.temp_max)}°C
               </p>
             </div>
+
+            <p className="text-6xl text-center font-bold">
+              {Math.round(data.main.temp)}°C
+            </p>
+
+            <p className="text-xs text-left dark:opacity-65">
+              Feels like {Math.round(data.main.feels_like)}°C
+            </p>
           </div>
     
           <div className="w-full ml-4">
@@ -75,7 +79,7 @@ const TemperatureChart = ({data, isLoading, error, apiErrorType}: Props) => {
                 className={cn("block w-12 h-9 object-cover object-center border rounded-sm bg-sky-500 dark:border-neutral-700", isNightIcon && "bg-sky-400")}
                 src={`https://openweathermap.org/img/wn/${data.weather[0].icon}@2x.png`}
               />
-              <p className="">
+              <p className="text-sm">
                 {data.weather[0].main}
               </p>
             </div>
