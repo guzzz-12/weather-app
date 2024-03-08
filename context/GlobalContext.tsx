@@ -6,7 +6,10 @@ import { AirPollutionData, DailyForecast, ApiErrorType, WeatherData } from "@/ty
 
 axios.defaults.baseURL = process.env.BASE_URL as string;
 
+export type Coords = {lat: number, lon: number};
+
 interface GlobalState {
+  coords: Coords,
   forecast: WeatherData | null;
   airPollution: AirPollutionData | null;
   dailyForecast: DailyForecast | null;
@@ -18,9 +21,11 @@ interface GlobalState {
   setWeatherData: (data: WeatherData) => void;
   setAirPollutionData: (data: AirPollutionData) => void;
   setDailyForecastData: (data: DailyForecast) => void;
+  updateCoords: (coords: Coords) => void;
 };
 
 const GlobalContext = createContext<GlobalState>({
+  coords: {lat: -23.5505, lon: -46.6333},
   forecast: null,
   airPollution: null,
   dailyForecast: null,
@@ -31,7 +36,8 @@ const GlobalContext = createContext<GlobalState>({
   apiErrorType: null,
   setWeatherData: () => {},
   setAirPollutionData: () => {},
-  setDailyForecastData: () => {}
+  setDailyForecastData: () => {},
+  updateCoords: () => {}
 });
 
 
@@ -48,6 +54,7 @@ const apiErrorHandler = (error: any) => {
 
 
 const GlobalContextProvider = ({children}: {children: ReactNode}) => {
+  const [coords, setCoords] = useState<Coords>({lat: -23.5505, lon: -46.6333});
   const [forecast, setForecast] = useState<WeatherData | null>(null);
   const [dailyForecast, setDailyForecast] = useState<DailyForecast | null>(null);
   const [airPollution, setAirPollution] = useState<AirPollutionData | null>(null);
@@ -58,16 +65,24 @@ const GlobalContextProvider = ({children}: {children: ReactNode}) => {
   const [apiError, setApiError] = useState<string | null>(null);
   const [apiErrorType, setApiErrorType] = useState<ApiErrorType | null>(null);
 
+  /** Actualizar la data del pronóstico principal */
   const setWeatherData = (data: WeatherData) => {
     setForecast(data);
   }
 
+  /** Actualizar la data de la calidad del aire */
   const setAirPollutionData = (data: AirPollutionData) => {
     setAirPollution(data);
   }
 
+  /** Actualizar la data del pronóstico de 5 días */
   const setDailyForecastData = (data: DailyForecast) =>{
     setDailyForecast(data);
+  }
+
+  /** Actualizar las coordenadas */
+  const updateCoords = (coords: Coords) => {
+    setCoords(coords);
   }
 
 
@@ -76,7 +91,7 @@ const GlobalContextProvider = ({children}: {children: ReactNode}) => {
   useEffect(() => {
     // Data del weather
     axios
-    .get<WeatherData>("/api/weather")
+    .get<WeatherData>(`/api/weather?lat=${coords.lat}&lon=${coords.lon}`)
     .then(res => {
       setForecast(res.data);
     })
@@ -90,7 +105,7 @@ const GlobalContextProvider = ({children}: {children: ReactNode}) => {
 
     // Data del air pollution
     axios
-    .get<AirPollutionData>("/api/pollution")
+    .get<AirPollutionData>(`/api/pollution?lat=${coords.lat}&lon=${coords.lon}`)
     .then(res => {
       setAirPollution(res.data);
     })
@@ -104,7 +119,7 @@ const GlobalContextProvider = ({children}: {children: ReactNode}) => {
 
     // Data del daily forecast
     axios
-    .get<DailyForecast>("/api/daily-forecast")
+    .get<DailyForecast>(`/api/daily-forecast?lat=${coords.lat}&lon=${coords.lon}`)
     .then(res => {
       setDailyForecast(res.data);
     })
@@ -114,12 +129,13 @@ const GlobalContextProvider = ({children}: {children: ReactNode}) => {
       setApiError(message);
     })
     .finally(() => setIsLoadingDailyForecast(false));
-  }, []);
+  }, [coords]);
   
 
   return (
     <GlobalContext.Provider
       value={{
+        coords,
         forecast,
         airPollution,
         dailyForecast,
@@ -130,7 +146,8 @@ const GlobalContextProvider = ({children}: {children: ReactNode}) => {
         apiErrorType,
         setWeatherData,
         setAirPollutionData,
-        setDailyForecastData
+        setDailyForecastData,
+        updateCoords
       }}
     >
       {children}
