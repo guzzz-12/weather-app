@@ -19,7 +19,7 @@ const Home = () => {
   return (
     <main className="py-4">
       <div className="container flex flex-col gap-4 md:flex-row">
-        <section className="flex flex-col gap-4 flex-shrink-0">
+        <section className="min-w-[300px] flex-shrink-0">
           <TemperatureChart
             // data={data.weather as WeatherData}
             data={forecast}
