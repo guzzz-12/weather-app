@@ -1,3 +1,6 @@
+@import url("https://api.mapbox.com/mapbox-gl-js/v3.2.0/mapbox-gl.css");
+@import url("@mapbox/mapbox-gl-geocoder/dist/mapbox-gl-geocoder.css");
+
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
