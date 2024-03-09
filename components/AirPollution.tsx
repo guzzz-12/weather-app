@@ -50,7 +50,7 @@ const AirPollution = ({data, isLoading, error, errorType}: Props) => {
       error={error}
       errorType={errorType}
       loading={isLoading}
-      loaderHeight="h-full"
+      loaderHeight="h-24"
       item="airPollution"
     >
       <div className="flex flex-col justify-center items-center w-full h-full mb-3">

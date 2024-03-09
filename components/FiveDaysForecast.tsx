@@ -22,7 +22,7 @@ const FiveDaysForecast = ({data, isLoading, error, errorType}: Props) => {
       loaderHeight="h-24"
       item="dailyForecast"
     >
-      <Carousel className="w-full max-w-xs py-2">
+      <Carousel className="w-full max-w-[80%] py-2">
         <CarouselContent className="flex justify-center items-center">
           {data?.list.map((item, index) => {
             const isNightIcon = data && item.weather[0].icon.endsWith("n");
@@ -30,7 +30,7 @@ const FiveDaysForecast = ({data, isLoading, error, errorType}: Props) => {
             return (
               <CarouselItem
                 key={index}
-                className="basis-1/2 h-full"
+                className="basis-1/3 h-full"
               >
                 <div className="flex flex-col h-full">
                   <p className="mb-3 text-center text-sm">
