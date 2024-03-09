@@ -2,6 +2,7 @@
 
 import { ReactNode, createContext, useContext, useEffect, useState } from "react";
 import axios, { AxiosError } from "axios";
+import toast from "react-hot-toast";
 import { AirPollutionData, DailyForecast, ApiErrorType, WeatherData } from "@/types";
 
 axios.defaults.baseURL = process.env.BASE_URL as string;
@@ -9,7 +10,7 @@ axios.defaults.baseURL = process.env.BASE_URL as string;
 export type Coords = {lat: number, lon: number};
 
 interface GlobalState {
-  coords: Coords,
+  coords: Coords | null,
   forecast: WeatherData | null;
   airPollution: AirPollutionData | null;
   dailyForecast: DailyForecast | null;
@@ -25,7 +26,7 @@ interface GlobalState {
 };
 
 const GlobalContext = createContext<GlobalState>({
-  coords: {lat: -23.5505, lon: -46.6333},
+  coords: null,
   forecast: null,
   airPollution: null,
   dailyForecast: null,
@@ -54,7 +55,8 @@ const apiErrorHandler = (error: any) => {
 
 
 const GlobalContextProvider = ({children}: {children: ReactNode}) => {
-  const [coords, setCoords] = useState<Coords>({lat: -23.5505, lon: -46.6333});
+  const [coords, setCoords] = useState<Coords | null>(null);
+
   const [forecast, setForecast] = useState<WeatherData | null>(null);
   const [dailyForecast, setDailyForecast] = useState<DailyForecast | null>(null);
   const [airPollution, setAirPollution] = useState<AirPollutionData | null>(null);
@@ -85,50 +87,77 @@ const GlobalContextProvider = ({children}: {children: ReactNode}) => {
     setCoords(coords);
   }
 
+  // Inicializar las coordenadas con la ubicación del usuario
+  useEffect(() => {
+    if (navigator.geolocation) {
+      navigator
+      .geolocation
+      .getCurrentPosition(
+        (location) => {
+          const {coords: {latitude, longitude}} = location;
+          setCoords({lat: latitude, lon: longitude});
+        },
+        (err) => {
+          setCoords({lat: 0, lon: 0});
+
+          if (err.PERMISSION_DENIED) {
+            toast.error("User location blocked by the user")
+          } else {
+            toast.error(err.message);
+          }
+        }
+      );
+    } else {
+      setCoords({lat: 0, lon: 0})
+    }
+  }, []);
+
 
   // Consultar la data del tiempo y actualizar el state
   // al inicializar la app o actualizar la página
   useEffect(() => {
-    // Data del weather
-    axios
-    .get<WeatherData>(`/api/weather?lat=${coords.lat}&lon=${coords.lon}`)
-    .then(res => {
-      setForecast(res.data);
-    })
-    .catch((err: any) => {
-      const message = apiErrorHandler(err);
-      setApiErrorType("weatherData");
-      setApiError(message);
-    })
-    .finally(() => setIsLoadingWeather(false));
-
-
-    // Data del air pollution
-    axios
-    .get<AirPollutionData>(`/api/pollution?lat=${coords.lat}&lon=${coords.lon}`)
-    .then(res => {
-      setAirPollution(res.data);
-    })
-    .catch((err: any) => {
-      const message = apiErrorHandler(err);
-      setApiErrorType("airPollution");
-      setApiError(message);
-    })
-    .finally(() => setIsLoadingAirPollution(false));
-
-
-    // Data del daily forecast
-    axios
-    .get<DailyForecast>(`/api/daily-forecast?lat=${coords.lat}&lon=${coords.lon}`)
-    .then(res => {
-      setDailyForecast(res.data);
-    })
-    .catch((err: any) => {
-      const message = apiErrorHandler(err);
-      setApiErrorType("dailyForecast");
-      setApiError(message);
-    })
-    .finally(() => setIsLoadingDailyForecast(false));
+    if (coords) {
+      // Data del weather
+      axios
+      .get<WeatherData>(`/api/weather?lat=${coords.lat}&lon=${coords.lon}`)
+      .then(res => {
+        setForecast(res.data);
+      })
+      .catch((err: any) => {
+        const message = apiErrorHandler(err);
+        setApiErrorType("weatherData");
+        setApiError(message);
+      })
+      .finally(() => setIsLoadingWeather(false));
+  
+  
+      // Data del air pollution
+      axios
+      .get<AirPollutionData>(`/api/pollution?lat=${coords.lat}&lon=${coords.lon}`)
+      .then(res => {
+        setAirPollution(res.data);
+      })
+      .catch((err: any) => {
+        const message = apiErrorHandler(err);
+        setApiErrorType("airPollution");
+        setApiError(message);
+      })
+      .finally(() => setIsLoadingAirPollution(false));
+  
+  
+      // Data del daily forecast
+      axios
+      .get<DailyForecast>(`/api/daily-forecast?lat=${coords.lat}&lon=${coords.lon}`)
+      .then(res => {
+        setDailyForecast(res.data);
+      })
+      .catch((err: any) => {
+        const message = apiErrorHandler(err);
+        setApiErrorType("dailyForecast");
+        setApiError(message);
+      })
+      .finally(() => setIsLoadingDailyForecast(false));      
+    }
   }, [coords]);
   
 
