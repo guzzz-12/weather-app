@@ -30,7 +30,7 @@ const FiveDaysForecast = ({data, isLoading, error, errorType}: Props) => {
             return (
               <CarouselItem
                 key={index}
-                className="basis-1/3 h-full"
+                className="basis-1/6"
               >
                 <div className="flex flex-col h-full">
                   <p className="mb-3 text-center text-sm">
@@ -51,7 +51,9 @@ const FiveDaysForecast = ({data, isLoading, error, errorType}: Props) => {
             )
           })}
         </CarouselContent>
+        
         <CarouselPrevious />
+
         <CarouselNext />
       </Carousel>
     </ItemCard>

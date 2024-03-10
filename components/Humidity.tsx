@@ -54,7 +54,7 @@ const Humidity = ({data, isLoading, error, errorType}: Props) => {
     >
       <div className="flex justify-center items-center w-full h-full">
         <div className="flex flex-col justify-center items-center gap-3">
-          <p className="flex-shrink-0 text-4xl text-center font-semibold">
+          <p className="flex-shrink-0 text-3xl text-center font-semibold">
             {data?.main.humidity}%
           </p>
           <p className="text-left text-xs leading-[1.6]">

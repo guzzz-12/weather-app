@@ -36,10 +36,10 @@ const MapContainer = ({isLoading, error, errorType}: Props) => {
       error={error}
       errorType={errorType}
       loading={isLoading}
-      loaderHeight="h-[250px]"
+      loaderHeight="h-full"
       item="weatherData"
     >
-      <div className="w-full h-full aspect-video">
+      <div className="w-full h-full">
         <Map
           style={{width: "100%", height: "100%"}}
           mapStyle={theme === "dark" ? mapStyles.dark : mapStyles.light}
