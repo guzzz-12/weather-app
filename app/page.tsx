@@ -21,7 +21,7 @@ const Home = () => {
   const {forecast, airPollution, dailyForecast, isLoadingWeather, isLoadingDailyForecast, isLoadingAirPollution, error, apiErrorType} = useGlobalContext();
 
   return (
-    <main className="py-4">
+    <main className="pt-4 pb-9">
       <Toaster
         position="top-center"
         toastOptions={{
@@ -29,7 +29,7 @@ const Home = () => {
         }}
       />
 
-      <div className="container flex flex-col gap-4 md:flex-row">
+      <div className="container flex gap-4 w-full">
         <section className="flex flex-col gap-4 w-[270px] flex-shrink-0">
           <TemperatureChart
             // data={data.weather as WeatherData}
@@ -77,9 +77,18 @@ const Home = () => {
           </div>
         </section>
 
-        <section className="flex flex-col flex-grow">
-          <div className="grid content-start grid-cols-1 gap-4 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 h-full">
-            <div className="col-span-2 w-full h-full flex-shrink-0">
+        <div className="w-full overflow-hidden">
+          <section className="w-full mb-4">
+            <FiveDaysForecast
+              data={dailyForecast}
+              isLoading={isLoadingDailyForecast}
+              error={error}
+              errorType={apiErrorType}
+            />
+          </section>
+
+          <section className="flex justify-between items-stretch gap-4 mb-4">
+            <div className="w-full aspect-video">
               <MapContainer
                 isLoading={isLoadingWeather}
                 error={error}
@@ -87,35 +96,27 @@ const Home = () => {
               />
             </div>
 
-            <div className="col-span-1 h-full">
-              <Sunset
-                // data={data.airPollution as AirPollutionData}
-                data={forecast}
-                isLoading={isLoadingWeather}
-                error={error}
-                errorType={apiErrorType}
-              />
+            <div className="flex flex-col gap-4 w-[360px]">
+              <div className="w-full">
+                <Sunset
+                  // data={data.airPollution as AirPollutionData}
+                  data={forecast}
+                  isLoading={isLoadingWeather}
+                  error={error}
+                  errorType={apiErrorType}
+                />
+              </div>
+              <div className="w-full">
+                <Wind
+                  data={forecast}
+                  isLoading={isLoadingWeather}
+                  error={error}
+                  errorType={apiErrorType}
+                />
+              </div>
             </div>
-
-            <div className="col-span-1 h-full">
-              <Wind
-                data={forecast}
-                isLoading={isLoadingWeather}
-                error={error}
-                errorType={apiErrorType}
-              />
-            </div>
-
-            <div className="col-span-4 h-max">
-              <FiveDaysForecast
-                data={dailyForecast}
-                isLoading={isLoadingDailyForecast}
-                error={error}
-                errorType={apiErrorType}
-              />
-            </div>
-          </div>
-        </section>
+          </section>
+        </div>
       </div>
     </main>
   );
