@@ -41,7 +41,8 @@ const MapContainer = ({isLoading, error, errorType}: Props) => {
     >
       <div className="w-full h-full">
         <Map
-          style={{width: "100%", height: "100%"}}
+          id="mainMap"
+          style={{width: "100%", height: "100%", borderRadius: "8px"}}
           mapStyle={theme === "dark" ? mapStyles.dark : mapStyles.light}
           initialViewState={{
             latitude: coords.lat,

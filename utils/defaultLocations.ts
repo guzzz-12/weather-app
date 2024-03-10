@@ -1,72 +1,131 @@
-export const defaultLocations = [
+export type City = {
+  country: string,
+  countryCode: string,
+  state: string,
+  city: string,
+  lat: number,
+  lon: number
+  }
+
+export const defaultLocations: City[] = [
   {
-      name: "United States",
-      countryCode: "US",
-      state: "California",
-      lat: 36.7783,
-      lon: -119.4179
+    "country": "China",
+    "countryCode": "CN",
+    "state": "Beijing",
+    "city": "Beijing",
+    "lat": 39.9042,
+    "lon": 116.4074
   },
   {
-      name: "United States",
-      countryCode: "US",
-      state: "Texas",
-      lat: 31.9686,
-      lon: -99.9018
+    "country": "India",
+    "countryCode": "IN",
+    "state": "Delhi",
+    "city": "New Delhi",
+    "lat": 28.6139,
+    "lon": 77.2090
   },
   {
-      name: "China",
-      countryCode: "CN",
-      state: "Beijing",
-      lat: 39.9042,
-      lon: 116.4074
+    "country": "Japan",
+    "countryCode": "JP",
+    "state": "Tokyo",
+    "city": "Tokyo",
+    "lat": 35.6895,
+    "lon": 139.6917
   },
   {
-      name: "China",
-      countryCode: "CN",
-      state: "Shanghai",
-      lat: 31.2304,
-      lon: 121.4737
+    "country": "Brazil",
+    "countryCode": "BR",
+    "state": "Sao Paulo",
+    "city": "Sao Paulo",
+    "lat": -23.5505,
+    "lon": -46.6333
   },
   {
-      name: "India",
-      countryCode: "IN",
-      state: "Maharashtra",
-      lat: 19.7515,
-      lon: 75.7139
+    "country": "USA",
+    "countryCode": "US",
+    "state": "Texas",
+    "city": "Houston",
+    "lat": 29.7604,
+    "lon": -95.3698
   },
   {
-      name: "India",
-      countryCode: "IN",
-      state: "Uttar Pradesh",
-      lat: 26.8467,
-      lon: 80.9462
+    "country": "Russia",
+    "countryCode": "RU",
+    "state": "Moscow",
+    "city": "Moscow",
+    "lat": 55.7558,
+    "lon": 37.6176
   },
   {
-      name: "Brazil",
-      countryCode: "BR",
-      state: "São Paulo",
-      lat: -23.5505,
-      lon: -46.6333
+    "country": "Indonesia",
+    "countryCode": "ID",
+    "state": "Jakarta",
+    "city": "Jakarta",
+    "lat": -6.2088,
+    "lon": 106.8456
   },
   {
-      name: "Brazil",
-      countryCode: "BR",
-      state: "Rio de Janeiro",
-      lat: -22.9068,
-      lon: -43.1729
+    "country": "Turkey",
+    "countryCode": "TR",
+    "state": "Istanbul",
+    "city": "Istanbul",
+    "lat": 41.0082,
+    "lon": 28.9784
   },
   {
-      name: "Russia",
-      countryCode: "RU",
-      state: "Moscow",
-      lat: 55.7558,
-      lon: 37.6176
+    "country": "Pakistan",
+    "countryCode": "PK",
+    "state": "Sindh",
+    "city": "Karachi",
+    "lat": 24.8607,
+    "lon": 67.0011
   },
   {
-      name: "Russia",
-      countryCode: "RU",
-      state: "Saint Petersburg",
-      lat: 59.9343,
-      lon: 30.3351
+    "country": "Nigeria",
+    "countryCode": "NG",
+    "state": "Lagos",
+    "city": "Lagos",
+    "lat": 6.5244,
+    "lon": 3.3792
+  },
+  {
+    "country": "Mexico",
+    "countryCode": "MX",
+    "state": "Mexico City",
+    "city": "Mexico City",
+    "lat": 19.4326,
+    "lon": -99.1332
+  },
+  {
+    "country": "Vietnam",
+    "countryCode": "VN",
+    "state": "Ho Chi Minh City",
+    "city": "Ho Chi Minh City",
+    "lat": 10.8231,
+    "lon": 106.6297
+  },
+  {
+    "country": "Philippines",
+    "countryCode": "PH",
+    "state": "Metro Manila",
+    "city": "Quezon City",
+    "lat": 14.6760,
+    "lon": 121.0437
+  },
+  {
+    "country": "Egypt",
+    "countryCode": "EG",
+    "state": "Cairo",
+    "city": "Cairo",
+    "lat": 30.0444,
+    "lon": 31.2357
+  },
+  {
+    "country": "Bangladesh",
+    "countryCode": "BD",
+    "state": "Dhaka",
+    "city": "Dhaka",
+    "lat": 23.8103,
+    "lon": 90.4125
   }
 ]
