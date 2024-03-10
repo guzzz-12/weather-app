@@ -55,9 +55,22 @@ const Pressure = ({data, isLoading, error, errorType}: Props) => {
     >
       <div className="flex justify-center items-center w-full h-full">
         <div className="flex flex-col justify-center items-center gap-3">
-          <p className="flex-shrink-0 text-4xl text-center font-semibold">
-            {data?.main.pressure} hPa
-          </p>
+          {data &&
+            <div className="flex flex-col gap-1 flex-shrink-0">
+              <p className="text-3xl text-center font-semibold">
+                {data.main.pressure} mbar
+              </p>
+              <div className="flex justify-start items-center gap-1 text-sm">
+                <p>
+                  {Math.round(data.main.pressure * 760/1013.25)} mmHg
+                </p>
+                <p>|</p>
+                <p>
+                  {Math.round(data.main.pressure)} hPa
+                </p>
+              </div>
+            </div>
+          }
           <p className="text-left text-xs leading-[1.6]">
             {descriptiveText}
           </p>
