@@ -1,6 +1,7 @@
 import type { Metadata } from "next";
 import { Inter } from "next/font/google";
 import NavBar from "@/components/NavBar";
+import Footer from "@/components/Footer";
 import { ThemeProvider } from "@/providers/ThemeProvider";
 import GlobalContextProvider from "@/context/GlobalContext";
 import { cn } from "@/lib/utils";
@@ -20,7 +21,7 @@ export default function RootLayout({
 }>) {
   return (
     <html lang="en">
-      <body className={cn("flex flex-col h-screen overflow-hidden dark:bg-neutral-900", inter.className)}>
+      <body className={cn("flex flex-col justify-between h-screen overflow-hidden dark:bg-neutral-900", inter.className)}>
         <GlobalContextProvider>
           <ThemeProvider
             attribute="class"
@@ -29,6 +30,7 @@ export default function RootLayout({
           >
             <NavBar />
             {children}
+            <Footer />
           </ThemeProvider>
         </GlobalContextProvider>
       </body>

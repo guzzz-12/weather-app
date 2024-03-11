@@ -29,7 +29,7 @@ const Wind = ({data, isLoading, error, errorType}: Props) => {
             backgroundSize: "cover",
             backgroundPosition: "center center"
           }}
-          className="relative w-full max-w-[200px] aspect-square rounded-full shadow-sm"
+          className="relative w-[140px] h-[140px] rounded-full shadow-sm"
         >
           <img
             style={{transform: `translate(-50%, -50%) rotateZ(${windDirection}deg)`}}

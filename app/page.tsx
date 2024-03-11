@@ -23,7 +23,7 @@ const Home = () => {
   const {forecast, airPollution, dailyForecast, isLoadingWeather, isLoadingDailyForecast, isLoadingAirPollution, error, apiErrorType} = useGlobalContext();
 
   return (
-    <main className="flex-grow py-4 overflow-hidden">
+    <main className="h-full flex-grow py-4 overflow-hidden">
       <Toaster
         position="top-center"
         toastOptions={{
@@ -33,6 +33,7 @@ const Home = () => {
 
       <MapProvider>
         <div className="container flex gap-4 w-full h-full">
+          {/* Columna izquierda */}
           <section className="flex flex-col gap-4 w-[270px] h-full pr-1 flex-shrink-0 overflow-y-auto scrollbar-thin">
             <TemperatureChart
               // data={data.weather as WeatherData}
@@ -80,7 +81,8 @@ const Home = () => {
             </div>
           </section>
 
-          <div className="flex flex-col justify-beetween gap-4 w-full flex-grow overflow-hidden">
+          {/* Columna derecha */}
+          <div className="flex flex-col justify-beetween gap-3 w-full flex-grow overflow-hidden">
             <section className="w-full flex-shrink-0">
               <FiveDaysForecast
                 data={dailyForecast}
@@ -90,8 +92,8 @@ const Home = () => {
               />
             </section>
 
-            <section className="flex justify-between items-stretch gap-4 flex-grow">
-              <div className="w-full h-full flex-grow">
+            <section className="flex justify-between items-stretch gap-3 flex-grow">
+              <div className="w-full">
                 <MapContainer
                   isLoading={isLoadingWeather}
                   error={error}
@@ -99,8 +101,8 @@ const Home = () => {
                 />
               </div>
 
-              <div className="flex flex-col gap-4 w-[360px] h-full">
-                <div className="w-full h-full flex-grow">
+              <div className="flex flex-col justify-stretch gap-3 w-[360px]">
+                <div className="w-full">
                   <Sunset
                     // data={data.airPollution as AirPollutionData}
                     data={forecast}
@@ -109,7 +111,7 @@ const Home = () => {
                     errorType={apiErrorType}
                   />
                 </div>
-                <div className="w-full">
+                <div className="w-full basis-full">
                   <Wind
                     data={forecast}
                     isLoading={isLoadingWeather}
