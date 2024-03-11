@@ -39,34 +39,32 @@ const MapContainer = ({isLoading, error, errorType}: Props) => {
       loaderHeight="h-full"
       item="weatherData"
     >
-      <div className="w-full h-full">
-        <Map
-          id="mainMap"
-          style={{width: "100%", height: "100%", borderRadius: "8px"}}
-          mapStyle={theme === "dark" ? mapStyles.dark : mapStyles.light}
-          initialViewState={{
-            latitude: coords.lat,
-            longitude: coords.lon,
-            zoom: 4
-          }}
+      <Map
+        id="mainMap"
+        style={{width: "100%", height: "100%", borderRadius: "8px"}}
+        mapStyle={theme === "dark" ? mapStyles.dark : mapStyles.light}
+        initialViewState={{
+          latitude: coords.lat,
+          longitude: coords.lon,
+          zoom: 4
+        }}
+      >
+        <Marker
+          style={{transformOrigin: "bottom center"}}
+          longitude={coords.lon}
+          latitude={coords.lat}
         >
-          <Marker
-            style={{transformOrigin: "bottom center"}}
-            longitude={coords.lon}
-            latitude={coords.lat}
-          >
-            <img
-              className="block w-[30px] h-[30px] origin-bottom filter drop-shadow-sm"
-              src="/location-pin.png"
-              alt="Location marker"
-            />
-          </Marker>
+          <img
+            className="block w-[30px] h-[30px] origin-bottom filter drop-shadow-sm"
+            src="/location-pin.png"
+            alt="Location marker"
+          />
+        </Marker>
 
-          <NavigationControl />
-          
-          <GeocoderControl />
-        </Map>
-      </div>
+        <NavigationControl />
+        
+        <GeocoderControl />
+      </Map>
     </ItemCard>
   )
 }

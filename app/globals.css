@@ -91,6 +91,5 @@
 }
 
 .mapboxgl-ctrl-geocoder .suggestions {
-  height: 150px !important;
-  overflow-y: scroll !important;
+  @apply h-[240px] overflow-y-auto scrollbar-thin !important;
 }

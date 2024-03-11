@@ -23,7 +23,7 @@ const TemperatureChart = ({data, isLoading, error, apiErrorType}: Props) => {
   const isNightIcon = data && data.weather[0].icon.endsWith("n");
 
   return (
-    <div className="flex flex-col justify-between items-center gap-4 w-full aspect-square py-2 flex-shrink-0 border dark:border-neutral-700 rounded-lg bg-neutral-100 dark:bg-neutral-950">
+    <div className="flex flex-col justify-between items-center gap-4 w-full py-2 flex-shrink-0 border dark:border-neutral-700 rounded-lg bg-neutral-100 dark:bg-neutral-950 overflow-hidden">
       {error && apiErrorType === "weatherData" &&
         <div className="flex justify-start items-center gap-2 w-full px-4 text-sm">
           <AlertCircle className="text-red-600" />
@@ -73,7 +73,7 @@ const TemperatureChart = ({data, isLoading, error, apiErrorType}: Props) => {
             </p>
           </div>
     
-          <div className="w-full ml-4">
+          <div className="w-full pl-4">
             <div className="flex justify-start items-center gap-2 mb-2">
               <img
                 className={cn("block w-12 h-9 object-cover object-center border rounded-sm bg-sky-500 dark:border-neutral-700", isNightIcon && "bg-sky-400")}

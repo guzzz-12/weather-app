@@ -6,11 +6,11 @@ import SearchDialog from "./SearchDialog";
 
 const NavBar = () => {
   return (
-    <nav className="bg-neutral-100 border dark:border-neutral-700 dark:bg-neutral-950">
+    <nav className="flex-shrink-0 bg-neutral-100 border dark:border-neutral-700 dark:bg-neutral-950">
       <div className="container flex justify-between items-center gap-2 py-2">
         <div className=" flex-grow">
           <Link className="py-2 text-2xl font-bold" href="/">
-            LOGO
+            WeatherMate
           </Link>
         </div>
 
