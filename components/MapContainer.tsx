@@ -1,7 +1,8 @@
 "use client"
 
 import Mapbox from "mapbox-gl";
-import { Map, Marker, NavigationControl } from "react-map-gl";
+import { Map, Marker, NavigationControl, GeolocateControl } from "react-map-gl";
+import { GeolocateResultEvent } from "react-map-gl/dist/esm/types";
 import { useTheme } from "next-themes";
 import GeocoderControl from "./GeocoderControl";
 import ItemCard from "./ItemCard";
@@ -17,12 +18,18 @@ interface Props {
 }
 
 const MapContainer = ({isLoading, error, errorType}: Props) => {
-  const {coords} = useGlobalContext();
+  const {coords, updateCoords} = useGlobalContext();
   const {theme} = useTheme();
 
   const mapStyles = {
     light: "mapbox://styles/mapbox/light-v11",
     dark: "mapbox://styles/mapbox/dark-v11"
+  }
+
+  /** Actualizar las cooordenadas con la ubicación del usuario */
+  const onGeolocateHandler = (e: GeolocateResultEvent<Mapbox.GeolocateControl>) => {
+    const {latitude, longitude} = e.coords;
+    updateCoords({lat: latitude, lon: longitude});
   }
 
   if (!coords) {
@@ -60,6 +67,12 @@ const MapContainer = ({isLoading, error, errorType}: Props) => {
             alt="Location marker"
           />
         </Marker>
+
+        <GeolocateControl
+          position="bottom-right"
+          showUserLocation={false}
+          onGeolocate={(e) => onGeolocateHandler(e)}
+        />
 
         <NavigationControl position="bottom-right" />
         
