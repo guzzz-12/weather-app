@@ -61,7 +61,7 @@ const MapContainer = ({isLoading, error, errorType}: Props) => {
           />
         </Marker>
 
-        <NavigationControl />
+        <NavigationControl position="bottom-right" />
         
         <GeocoderControl />
       </Map>
