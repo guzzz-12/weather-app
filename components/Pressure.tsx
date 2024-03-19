@@ -1,4 +1,4 @@
-import { useEffect, useState } from "react";
+import { HTMLAttributes, useEffect, useState } from "react";
 import { ApiErrorType, WeatherData } from "@/types";
 import ItemCard from "./ItemCard";
 
@@ -7,9 +7,10 @@ interface Props {
   isLoading: boolean;
   error: string | null;
   errorType: ApiErrorType | null;
+  className?: HTMLAttributes<HTMLElement>["className"];
 }
 
-const Pressure = ({data, isLoading, error, errorType}: Props) => {
+const Pressure = ({data, isLoading, error, errorType, className}: Props) => {
   const [descriptiveText, setDescriptiveText] = useState("N/A");
 
   useEffect(() => {
@@ -45,6 +46,7 @@ const Pressure = ({data, isLoading, error, errorType}: Props) => {
 
   return (
     <ItemCard
+      className={className}
       title="Pressure"
       icon="GaugeCircle"
       loading={isLoading}
@@ -53,14 +55,14 @@ const Pressure = ({data, isLoading, error, errorType}: Props) => {
       loaderHeight="h-24"
       item="weatherData"
     >
-      <div className="flex justify-center items-center w-full h-full">
+      <div className="flex justify-center items-start min-[1000px]:items-center w-full h-full">
         <div className="flex flex-col justify-center items-center gap-3">
           {data &&
             <div className="flex flex-col gap-1 flex-shrink-0">
               <p className="text-3xl text-center font-semibold">
                 {data.main.pressure} mbar
               </p>
-              <div className="flex justify-start items-center gap-1 text-sm">
+              <div className="flex justify-center items-center gap-1 w-full text-xs">
                 <p>
                   {Math.round(data.main.pressure * 760/1013.25)} mmHg
                 </p>

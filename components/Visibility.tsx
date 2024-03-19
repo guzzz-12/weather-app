@@ -1,4 +1,4 @@
-import { useEffect, useState } from "react";
+import { HTMLAttributes, useEffect, useState } from "react";
 import { ApiErrorType, WeatherData } from "@/types";
 import ItemCard from "./ItemCard";
 
@@ -7,9 +7,10 @@ interface Props {
   isLoading: boolean;
   error: string | null;
   errorType: ApiErrorType | null;
+  className?: HTMLAttributes<HTMLElement>["className"];
 }
 
-const Visibility = ({data, isLoading, error, errorType}: Props) => {
+const Visibility = ({data, isLoading, error, errorType, className}: Props) => {
   const [descriptiveText, setDescriptiveText] = useState("N/A");
 
   // Generar el texto descriptivo para cada nivel de visibilidad
@@ -42,6 +43,7 @@ const Visibility = ({data, isLoading, error, errorType}: Props) => {
 
   return (
     <ItemCard
+      className={className}
       title="Visibility"
       icon="Eye"
       loading={isLoading}
@@ -50,7 +52,7 @@ const Visibility = ({data, isLoading, error, errorType}: Props) => {
       loaderHeight="h-24"
       item="weatherData"
     >
-      <div className="flex justify-center items-center w-full h-full">
+      <div className="flex justify-center items-start min-[1000px]:items-center w-full h-full">
         <div className="flex flex-col justify-center items-center gap-3">
           <p className="flex-shrink-0 text-3xl text-center font-semibold">
             {data && Math.round(data.visibility/1000)} km

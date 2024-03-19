@@ -23,23 +23,23 @@ const FiveDaysForecast = ({data, isLoading, error, errorType}: Props) => {
       item="dailyForecast"
     >
       <Carousel className="w-full max-w-[80%]">
-        <CarouselContent className="flex justify-center items-center">
+        <CarouselContent className="flex justify-center items-center gap-3">
           {data?.list.map((item, index) => {
             const isNightIcon = data && item.weather[0].icon.endsWith("n");
 
             return (
               <CarouselItem
                 key={index}
-                className="pl-1 basis-1/6"
+                className="pl-1 basis-1/3 min-[650px]:basis-1/6"
               >
                 <div className="flex flex-col gap-2 h-full">
-                  <p className="text-center text-xs">
+                  <p className="text-center text-xs whitespace-nowrap">
                     {moment(item.dt_txt).format("DD/MM - HH:mm")}
                   </p>
 
                   <div className="flex flex-col justify-center items-center gap-1 mt-auto">
                     <img
-                      className={cn("block w-[80px] aspect-video object-cover object-center border rounded-sm bg-sky-600 dark:border-neutral-700")}
+                      className={cn("block w-full h-[60px] object-cover object-center border rounded-sm bg-sky-600 dark:border-neutral-700")}
                       src={`https://openweathermap.org/img/wn/${item.weather[0].icon}@2x.png`}
                     />
                     <p className="text-center text-xs">

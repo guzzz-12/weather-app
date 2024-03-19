@@ -21,7 +21,7 @@ export default function RootLayout({
 }>) {
   return (
     <html lang="en">
-      <body className={cn("flex flex-col justify-between h-screen overflow-hidden dark:bg-neutral-900", inter.className)}>
+      <body className={cn("flex flex-col justify-between min-[1000px]:h-[100dvh] min-[1000px]:overflow-hidden dark:bg-neutral-900", inter.className)}>
         <GlobalContextProvider>
           <ThemeProvider
             attribute="class"

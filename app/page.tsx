@@ -32,20 +32,21 @@ const Home = () => {
       />
 
       <MapProvider>
-        <div className="container flex gap-4 w-full h-full">
+        <div className="container flex flex-col gap-4 w-full h-full min-[1000px]:flex-row">
           {/* Columna izquierda */}
-          <section className="flex flex-col gap-4 w-[270px] h-full pr-1 flex-shrink-0 overflow-y-auto scrollbar-thin">
-            <TemperatureChart
-              // data={data.weather as WeatherData}
-              data={forecast}
-              isLoading={isLoadingWeather}
-              error={error}
-              apiErrorType={apiErrorType}
-            />
+          <section className="flex flex-row gap-4 w-full h-[max] pr-1 flex-shrink-0 overflow-x-auto scrollbar-thin min-[1000px]:flex-col min-[1000px]:w-[270px] min-[1000px]:h-full min-[1000px]:overflow-y-auto">
+            <div className="w-[250px] flex-shrink-0 min-[1000px]:w-full">
+              <TemperatureChart
+                className=""
+                data={forecast}
+                isLoading={isLoadingWeather}
+                error={error}
+                apiErrorType={apiErrorType}
+              />
+            </div>
 
-            <div className="w-full h-full">
+            <div className="w-[250px] flex-shrink-0 min-[1000px]:w-full">
               <AirPollution
-                // data={data.airPollution as AirPollutionData}
                 data={airPollution}
                 isLoading={isLoadingAirPollution}
                 error={error}
@@ -53,7 +54,7 @@ const Home = () => {
               />
             </div>
 
-            <div className="w-full h-full">
+            <div className="w-[250px] flex-shrink-0 min-[1000px]:w-full">
               <Humidity
                 data={forecast}
                 isLoading={isLoadingWeather}
@@ -62,7 +63,7 @@ const Home = () => {
               />
             </div>
 
-            <div className="w-full h-full">
+            <div className="w-[250px] flex-shrink-0 min-[1000px]:w-full">
               <Pressure
                 data={forecast}
                 isLoading={isLoadingWeather}
@@ -71,7 +72,7 @@ const Home = () => {
               />
             </div>
 
-            <div className="w-full h-full">
+            <div className="w-[250px] flex-shrink-0 min-[1000px]:w-full">
               <Visibility
                 data={forecast}
                 isLoading={isLoadingWeather}
