@@ -2,7 +2,6 @@
 
 import Link from "next/link";
 import ThemeToggle from "./ThemeToggle";
-import SearchDialog from "./SearchDialog";
 
 const NavBar = () => {
   return (
@@ -15,7 +14,6 @@ const NavBar = () => {
         </div>
 
         <div className="flex justify-center items-center gap-2 flex-shrink-0">
-          <SearchDialog />
           <ThemeToggle />
         </div>
       </div>
