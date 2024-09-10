@@ -13,7 +13,7 @@ const GeocoderControl = () => {
   // Actualizar las coordenadas con los resultados del Geocoder
   const {updateCoords} = useGlobalContext();
 
-  useControl<MapboxGeocoder>(
+  useControl<any>(
     () => {
       const ctrl = new MapboxGeocoder({
         marker: true,

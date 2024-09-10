@@ -27,7 +27,7 @@ const MapContainer = ({isLoading, error, errorType}: Props) => {
   }
 
   /** Actualizar las cooordenadas con la ubicación del usuario */
-  const onGeolocateHandler = (e: GeolocateResultEvent<Mapbox.GeolocateControl>) => {
+  const onGeolocateHandler = (e: GeolocateResultEvent<any>) => {
     const {latitude, longitude} = e.coords;
     updateCoords({lat: latitude, lon: longitude});
   }
